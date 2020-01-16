@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--- bootstrap css -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+
+	
+
+<style>
+    
+body {
+   /*font: 400 14px/1.8 'Poppins', sans-serif;*/
+    color: #fff;
+    overflow-x: hidden;
+    background-color: #1f1f20;
+    font-family: cursive;
+}    
+    
+.hamburger {
+    position: absolute;
+    width: 2.3rem;
+    height: 0.17rem;
+    border-radius: 0;
+    background-color: white;
+    display: block;
+    margin: 0px;
+    left: 40px;
+    bottom: 60px;
+	transition: 400ms;
+}
+.hamburger:before {
+    position: absolute;
+    width: 1.3rem;
+    height: .13rem;
+    border-radius: 2px;
+    background-color: white;
+    display: block;
+    margin: auto;
+    transition: 400ms;
+    content: '';
+    backface-visibility: hidden;
+    transform: rotate(0deg) translateY(10px);
+    right: 0;
+}
+
+.hamburger:after {
+    position: absolute;
+    width: 2.3rem;
+    height: .13rem;
+    border-radius: 2px;
+    background-color: white;
+    display: block;
+    margin: auto;
+    transition: 400ms;
+    content: '';
+    backface-visibility: hidden;
+    transform: rotate(0deg) translateY(-10px);
+}
+
+.hamburger-overlay {
+	box-shadow: 0 0 0 0 #1f1f20;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: .5s ease-in-out;
+    border-radius: 50%;
+}
+
+.hamburger-menu.open .hamburger-overlay {
+	box-shadow: 0 0 0 120vh rgba(31, 31, 32, 1), 0 0 0 120vh rgba(31,31,32,1);
+	opacity: 0.9
+	/*border-radius: 0;*/
+}
+
+.hamburger-menu {
+	position: fixed;
+	right: -100px;
+	top: -100px;
+	z-index: 100;
+	width: 200px;
+	height: 200px;
+	background-color: rgb(16, 16, 16);
+	border-radius: 50% 50% 50% 50%;
+	transition: .5s ease-in-out;
+	cursor: pointer;
+	border: none;
+	outline: none !important;
+}
+
+.hamburger-menu.open .hamburger:before {
+  transform: rotate(45deg) translateY(0px);
+    width: 2.3rem;
+}
+
+.hamburger-menu.open .hamburger:after {
+  transform: rotate(-45deg) translateY(0px);
+}
+
+.hamburger-menu.open .hamburger {
+  background-color: rgba(255, 255, 255, 0);
+}
+    
+    
+    
+    
+
+.menu-wrapper .Menu {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	position: fixed;
+	left: 0;
+	right: 0;
+	width: 50%;
+	margin: 0 auto;
+	z-index: 11111;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.8s cubic-bezier(0.16, 1.08, 0.38, 0.98);
+}
+
+.menu-wrapper.open .Menu {
+	opacity: 1;
+	visibility: visible;
+}      
+    
+.ham-active {
+	overflow: hidden !important;
+}
+    
+     
+.Menu-list {
+	font-size: 50px;
+	line-height: 1.2;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.Menu-list-item a {
+	color: transparent !important;
+	font-family: 'Josefin Sans', sans-serif;
+}
+    
+
+.Menu-list-item {
+	position: relative;
+	color: transparent;
+	cursor: pointer;
+}
+    
+.Menu-list-item::before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 49%;
+	left: -10%;
+	right: -10%;
+	height: 4px;
+	border-radius: 4px;
+	margin-top: -2px;
+	background: #ff2c2c;
+	-webkit-transform: scale(0);
+	transform: scale(0);
+	transition: -webkit-transform 0.8s cubic-bezier(0.16, 1.08, 0.38, 0.98);
+	transition: transform 0.8s cubic-bezier(0.16, 1.08, 0.38, 0.98);
+	transition: transform 0.8s cubic-bezier(0.16, 1.08, 0.38, 0.98),
+	 -webkit-transform 0.8s cubic-bezier(0.16, 1.08, 0.38, 0.98);
+	z-index: 1;
+}
+
+
+.Mask {
+	display: block;
+	position: absolute;
+	overflow: hidden;
+	color: #ff2c2c;
+	top: 0;
+	height: 49%;
+	transition: all 0.8s cubic-bezier(0.16, 1.08, 0.38, 0.98);
+}
+    
+.Mask span {
+	display: block;
+}
+
+.Mask + .Mask {
+	top: 48.9%;
+	height: 51.1%;
+}
+    
+.Mask + .Mask span {
+	-webkit-transform: translateY(-53%);
+	transform: translateY(-53%);
+}
+
+.Menu-list-item:hover .Mask,
+.Menu-list-item:active .Mask {
+	color: #FFF;
+	-webkit-transform: skewX(12deg) translateX(5px);
+	transform: skewX(12deg) translateX(5px);
+}
+    
+.Menu-list-item:hover .Mask + .Mask,
+.Menu-list-item:active .Mask + .Mask {
+	-webkit-transform: skewX(12deg) translateX(-5px);
+	transform: skewX(12deg) translateX(-5px);
+}
+    
+.Menu-list-item:hover::before,
+.Menu-list-item:active::before {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+
+    
+
+    
+   
+    
+</style>
+
+
+</head>
+
+<body>
+    
+    <div class="menu-wrapper">
+		
+		<button class="hamburger-menu">
+			<span class="hamburger"></span>
+			<span class="amburger-overlay"></span>	
+		</button>
+		
+		<div class="Menu ham-tilt">
+
+			<ul class="Menu-list" >
+				
+				<li class="Menu-list-item">
+					<a href="">Home
+						<span class="Mask"><span>Home</span></span>
+						<span class="Mask"><span>Home</span></span>
+					</a>
+				</li>
+				<li class="Menu-list-item">
+					<a href="#">Work
+						<span class="Mask"><span>Work</span></span>
+						<span class="Mask"><span>Work</span></span>
+					</a>
+				</li>
+				<li class="Menu-list-item">
+					<a href="">Services
+						<span class="Mask"><span>Services</span></span>
+						<span class="Mask"><span>Services</span></span>
+					</a>
+				</li>
+				<li class="Menu-list-item">
+					<a href="">Blog
+						<span class="Mask"><span>Blog</span></span>
+						<span class="Mask"><span>Blog</span></span>
+					</a>
+				</li>
+				<li class="Menu-list-item">
+					<a href="#">Contact
+						<span class="Mask"><span>Contact</span></span>
+						<span class="Mask"><span>Contact</span></span>
+					</a>
+				</li>
+				
+			</ul>
+
+		</div>
+	</div>
+    
+    
+    
+       
+       
+       
+<!--- jquery --->
+<script src="js/jquery.js"></script>
+
+<!--- bootstrap js--->
+<script src="js/bootstrap.min.js"></script>
+<!--- tilt --->
+<script src="js/Tilt.jquery.js"></script>
+
+
+
+
+<script>
+    
+    /* ---------------------------------------------- /*
+* Ham Menu 
+/* ---------------------------------------------- */
+
+$(".hamburger-menu").on('click', function(){
+	$(this).toggleClass("open");
+	$(".menu-wrapper").toggleClass("open");
+	$("body, html").toggleClass("ham-active");
+	
+	if($('body').hasClass('ham-active')){
+		$('body, html').css("overflow", "hiddden");
+	} else {
+		$('body, html').css("overflow", "");
+	}
+});
+
+
+/* ---------------------------------------------- /*
+* Background image & Tilt Init
+/* ---------------------------------------------- */
+
+
+
+
+$('.ham-tilt').tilt({
+    glare: false,
+	perspective: 1000,
+    maxTilt: 50,
+	scale: 1.2,
+	easing: "cubic-bezier(.03,.98,.52,.99)",
+});
+
+      
+      
+</script> 
+    
+</body>
+
+</html>
